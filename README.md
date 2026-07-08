@@ -180,16 +180,21 @@ Open `http://localhost:8501` in your browser.
 - Which HTTP method is used?
 - Show example request.
 
+
+
 ### Screenshots
 
-Add screenshots of the running application here:
+**Uploading and indexing documentation:**
 
-```
-screenshots/
-├── upload.png
-├── query.png
-└── answer.png
-```
+![Upload and indexing](screenshots/upload.png)
+
+**Asking a question:**
+
+![Asking a question](screenshots/query.png)
+
+**Generated answer with source chunks:**
+
+![Answer with sources](screenshots/answer.png)
 
 ---
 
