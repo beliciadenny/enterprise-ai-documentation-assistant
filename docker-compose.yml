@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: doc-assistant-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: doc-assistant-app
+    depends_on:
+      - ollama
+    ports:
+      - "8000:8000"   # FastAPI backend
+      - "8501:8501"   # Streamlit frontend
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=llama3.2
+      - BACKEND_URL=http://localhost:8000
+    volumes:
+      - ./docs:/app/docs
+      - ./vectorstore:/app/vectorstore
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
